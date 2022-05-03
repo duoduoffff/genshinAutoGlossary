@@ -1,0 +1,5 @@
+**/__pycache__/
+**/*.log
+**/out.txt
+Build/luna_pinyin.genshinext.dict.yaml
+**/.DS_Store
