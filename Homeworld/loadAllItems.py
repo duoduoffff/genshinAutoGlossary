@@ -39,9 +39,9 @@ def getTextMapHashByFurniture(id):
 
     # print(furnitureNames)
 
-    targetObj = list(filter(lambda x: x["Id"] == id, furnitureNames))
+    targetObj = list(filter(lambda x: x["id"] == id, furnitureNames))
     # print("@41: " + json.dumps(targetObj))
-    return targetObj[0]["NameTextMapHash"]
+    return targetObj[0]["nameTextMapHash"]
 
 def getReadableNames(textSea, id):
     return text.get(textSea, id)

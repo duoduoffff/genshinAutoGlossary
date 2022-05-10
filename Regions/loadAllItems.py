@@ -22,13 +22,13 @@ def getAllNames():
 
     result = []
     for item in allRegions:
-        stringType = item["TextMapId"]
+        stringType = item["textMapId"]
 
         if(item is not None):
             areaPattern = re.search(r'UI\_MAP_AREA', stringType)
             cityPattern = re.search(r'UI\_MAP_City', stringType)
             if (areaPattern or cityPattern):
-                result.append(item["TextMapContentTextMapHash"])
+                result.append(item["textMapContentTextMapHash"])
 
     return result
 

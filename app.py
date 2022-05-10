@@ -15,6 +15,7 @@ from Homeworld import loadAllItems as Homeworld
 from Material import loadAllItems as Material
 from Regions import loadAllItems as Regions
 from Weapon import loadAllItems as Weapon
+from Artifact import loadAllItems as Artifact
 
 def convertToTrad(text):
     converter = opencc.OpenCC("s2t.json")
@@ -56,6 +57,7 @@ if __name__ == '__main__':
     textSea = load.loadSea()
     print("loaded text sea, length {0} bytes.".format(str(len(textSea))))
 
+    artifact = Artifact.exec(textSea)
     avatars = Avatar.exec(textSea)
     homeworld = Homeworld.exec(textSea)
     material = Material.exec(textSea)
@@ -68,6 +70,7 @@ if __name__ == '__main__':
     arrays.extend(material)
     arrays.extend(regions)
     arrays.extend(weapon)
+    arrays.extend(artifact)
 
     bigArray = dedup.exec(arrays)
     print("Generated {0} abbreviations.".format(str(len(bigArray))))

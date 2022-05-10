@@ -3,3 +3,5 @@
 **/out.txt
 Build/luna_pinyin.genshinext.dict.yaml
 **/.DS_Store
+Build/mspy.dat
+Build/sogou.txt

@@ -22,7 +22,7 @@ def getAllNames():
 
     result = []
     for item in allWeapons:
-        result.append(item["NameTextMapHash"])
+        result.append(item["nameTextMapHash"])
 
     return result
 

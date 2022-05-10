@@ -17,11 +17,11 @@ def getAllNames():
     objects = []
     
     basePath = conf.dataPath
-    combinedPath = "{0}/{1}".format(basePath, config.avatarExcelConfigData)
-    allAvatars = file.FileOperations.readAsJson(combinedPath)
+    combinedPath = "{0}/{1}".format(basePath, config.artifactExcelConfigData)
+    allArtifacts = file.FileOperations.readAsJson(combinedPath)
 
     result = []
-    for item in allAvatars:
+    for item in allArtifacts:
         result.append(item["nameTextMapHash"])
 
     return result
@@ -30,11 +30,11 @@ def getReadableNames(textSea, id):
     return text.get(textSea, id)
 
 def exec(textSea):
-    print("Converting Avatars...")
+    print("Converting Artifacts...")
     all = []
-    avatars = getAllNames()
-    for avatar in avatars:
-        readable = getReadableNames(textSea, avatar)
+    artifacts = getAllNames()
+    for artifact in artifacts:
+        readable = getReadableNames(textSea, artifact)
         if (readable and len(readable) > 0):
             readable = sanitize.removeBrackets(readable)
             readable = sanitize.removeMinusChar(readable)
