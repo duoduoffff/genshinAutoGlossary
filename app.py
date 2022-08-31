@@ -33,7 +33,7 @@ def gen(array):
     text += "\n\n"
 
     for item in array:
-        trad = convertToTrad(item)
+        trad = item
         # pinyin = SnowNLP(item).pinyin
         pinyin = pypinyin.pinyin(item, style=pypinyin.NORMAL)
         tab = "\t"
