@@ -6,7 +6,7 @@ from . import conf
 
 def loadSea():
     dataPath = conf.dataPath
-    mapLoc = conf.chtTextSeaPath
+    mapLoc = conf.chsTextSeaPath
     combinedPath = "{0}{1}".format(dataPath, mapLoc)
 
     return file.FileOperations.readAsJson(combinedPath)

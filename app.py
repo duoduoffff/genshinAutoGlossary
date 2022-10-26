@@ -21,7 +21,7 @@ def convertToTrad(text):
     converter = opencc.OpenCC("s2t.json")
     return converter.convert(text)
 
-def gen(array):
+def gen(array, traditional=True):
     print("Generating...\n")
 
     text = "---\n"
@@ -33,7 +33,10 @@ def gen(array):
     text += "\n\n"
 
     for item in array:
-        trad = item
+        if traditional == False:
+            trad = item
+        else:
+            trad = convertToTrad(item)
         # pinyin = SnowNLP(item).pinyin
         pinyin = pypinyin.pinyin(item, style=pypinyin.NORMAL)
         tab = "\t"
@@ -74,7 +77,11 @@ if __name__ == '__main__':
 
     bigArray = dedup.exec(arrays)
     print("Generated {0} abbreviations.".format(str(len(bigArray))))
-    genedText = gen(bigArray)
+    tradPrompt = input("Would you like to have traditional characters? [Y/n] ")
+    if(tradPrompt == "N" or tradPrompt == "n"):
+        genedText = gen(bigArray, traditional=False)
+    else:
+        genedText = gen(bigArray, traditional=True)
 
     combinedPath = "./{0}/{1}".format(conf.buildPath, conf.outputName)
     file.FileOperations.writeToFile(genedText, combinedPath)
