@@ -1,6 +1,6 @@
 #! /usr/local/bin/python3
 
-dataPath = "/Users/notrachel/git/GenshinData_2.3"
+dataPath = "C:\\Users\\notRachel\\git\\GenshinData"
 prodPath = "/Users/notrachel/Library/Rime"
 
 ########## STOP - Don't edit anything below this except that you know what you are doing ##########
@@ -8,7 +8,7 @@ prodPath = "/Users/notrachel/Library/Rime"
 chsTextSeaPath = "/TextMap/TextMapCHS.json"
 chtTextSeaPath = "/TextMap/TextMapCHT.json"
 
-outputName = "luna_pinyin.genshinext.dict.yaml"
-baseName = "luna_pinyin.genshin.dict.yaml"
+outputName = "luna_pinyin_genshinext.dict.yaml"
+baseName = "luna_pinyin_genshin.dict.yaml"
 defaultWeight = "1"
 buildPath = "/Build"

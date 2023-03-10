@@ -1,9 +1,9 @@
 ---
-name: luna_pinyin.extended
+name: luna_pinyin_extended
 version: "2014.09.07"
 sort: by_weight
 use_preset_vocabulary: true
 import_tables:
     - luna_pinyin
-    - luna_pinyin.genshinext
+    - luna_pinyin_genshinext
 ...
