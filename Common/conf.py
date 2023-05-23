@@ -1,6 +1,6 @@
 #! /usr/local/bin/python3
 
-dataPath = "C:\\Users\\notRachel\\git\\GenshinData"
+dataPath = "/Users/notrachel/git/GenshinData"
 prodPath = "/Users/notrachel/Library/Rime"
 
 ########## STOP - Don't edit anything below this except that you know what you are doing ##########

@@ -16,3 +16,13 @@ Update your input method preferences as Genshin Impact updates and rolls out a n
 5. The program will run and produce some output to console.
 6. The generated files required by Rime (Squirrel) will be produced at `{ProjectRoot}/Build` folder. Copy all the three files there to your Rime config folder.
 7. Re-deploy your input method and enjoy
+
+## Notes for macOS Monterey and above
+
+If Python complains about missing openCC, try installing it using 
+`brew install opencc`. If it continues complaining that the opencc library 
+is missing, find that (it is typically installed under 
+`/opt/homebrew/Cellar/opencc/1.1.6/lib`), and add it to your .zshrc 
+environment variable by adding `export 
+LIBOPENCC='/opt/homebrew/Cellar/opencc/1.1.6/lib/libopencc.dylib'`, and 
+then source it.
