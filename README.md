@@ -17,6 +17,24 @@ Update your input method preferences as Genshin Impact updates and rolls out a n
 6. The generated files required by Rime (Squirrel) will be produced at `{ProjectRoot}/Build` folder. Copy all the three files there to your Rime config folder.
 7. Re-deploy your input method and enjoy
 
+## For Yuhao-Guanghua users
+
+To make Yuhao-compatible wordlib, first make sure that the file 
+`~/Library/Rime/yuhao.full.dict` exists before proceeding as follows:
+
+1. Make sure that GenshinData is present and run yuhao.py.
+2. Copy `Build/yuhao.genshin.dict.yaml` to `~/Library/Rime`.
+3. Find `~/Library/Rime/yuhao.dict.yaml` and append `yuhao.genshin` under 
+node `import_tables`. Adding `yuhao.dict.custom.yaml` is not going to 
+work. You have to make this change every time the input scheme updates.
+4. Re-deploy and use it.
+
+Attention, to prevent too many words taking the same input sequence, we 
+have excluded `Artifact` and `Homeworld` by default. To add these back, 
+you have to alter the function parameters. See 
+<https://github.com/duoduoffff/genshinAutoGlossary/blob/master/Common/gen.py#L61>.
+
+
 ## Notes for macOS Monterey and above
 
 If Python complains about missing openCC, try installing it using 
