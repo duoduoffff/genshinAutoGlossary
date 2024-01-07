@@ -15,7 +15,7 @@ globalProxySettings = {
         "http": "http://127.0.0.1:7890"
     }
 
-def parseCsvSp(content, head=True):
+def parseCsvSp(content, head=True, web=False):
     delim = ","
     
     lines = content.splitlines()
@@ -25,10 +25,16 @@ def parseCsvSp(content, head=True):
     finItems = []
     for line in lines:
         items = line.split(delim)
-        fcItem = {
-            "char": items[0],
-            "fullcode": items[1],
-        }
+        if web == True:
+            fcItem = {
+                "char": items[0],
+                "fullcode": items[2]
+            }
+        else:
+            fcItem = {
+                "char": items[0],
+                "fullcode": items[1]
+            }
         finItems.append(fcItem)
         
     return finItems
@@ -66,8 +72,12 @@ def downloadFullCode(variant="light",
                      domain="raw.githubusercontent.com", 
                      commit="main",
                      enableProxy=True,
+                     ghproxy=True,
                      timeout=30):
     url = "https://{0}/{1}/{3}/{2}/chaifen/%E5%AE%87%E6%B5%A9%E8%BC%B8%E5%85%A5%E6%B3%95%E5%85%A8%E6%BC%A2%E5%AD%97%E6%8B%86%E5%88%86%E8%A1%A8.csv".format(domain, repo, variant, commit)
+    useGhproxy = input("Would you like to have ghproxy enabled? (Y/n)")
+    if useGhproxy == "Y" or useGhproxy == "y" or useGhproxy == "":
+        url = "https://mirror.ghproxy.com/{0}".format(url)
     print("Requesting fullcode...")
     if(enableProxy == False):
         fullCode = requests.get(url, stream=True, timeout=timeout)
@@ -88,7 +98,7 @@ def getFullCodeForChar(char, fullcodedict):
     return char_info["fullcode"] if char_info is not None else None
     
 def preprocessFullCode(fullcode):
-    fullCodeObj = parseCsvSp(fullcode)
+    fullCodeObj = parseCsvSp(fullcode, web=True)
     sanitizedFullCode = []
     for char in fullCodeObj:
         sanitizedCode = convertSpecialAlphabetVariation(char["fullcode"])
@@ -100,11 +110,6 @@ def preprocessFullCode(fullcode):
 def getInputCharForPhrase(phrase, fullCode):
     phraseLength = len(phrase)
     inputChar = ""
-    for i in range(phraseLength):
-        charCode = getFullCodeForChar(phrase[i], fullCode)
-        if charCode is None:
-            # print(phrase[i])
-            return ""
 
     if(phraseLength) == 2:
         inputChar += getFullCodeForChar(phrase[0], fullCode)[0]
@@ -130,9 +135,16 @@ def getInputCharForPhrase(phrase, fullCode):
 
 def genYuhao():
     print("Generating...\n")
-    fullDictPath = "{0}/yuhao.full.dict.yaml".format(conf.prodPath)
-    fullCode = parseFullDict(fullDictPath)
-    fullCode = parseCsvSp(fullCode, head=False)
+    print("This script may fetch the latest version of the fulldict from GitHub so as to conform with the Hamster input method on iOS.")
+    userConfirmation = input("Would you like to use the fulldict from web? (y/N)")
+    if userConfirmation == "Y" or userConfirmation == "y":
+        fullCode = downloadFullCode()
+        fullCode = preprocessFullCode(fullCode)
+    else:
+        fullDictPath = "{0}/yuhao/yuhao.full.dict.yaml".format(conf.prodPath)
+        fullCode = parseFullDict(fullDictPath)
+        fullCode = parseCsvSp(fullCode, head=False)
+        
     fullCodeDictVar = fullCodeDict(fullCode)
     tab = "\t"
     
@@ -141,7 +153,7 @@ def genYuhao():
     
     for item in bigArray:
         inputChar = getInputCharForPhrase(item, fullCodeDictVar)
-        # print("{0} -> {1}".format(item, inputChar))
+        #print("{0} -> {1}".format(item, inputChar))
         result += item
         result += tab
         result += inputChar
