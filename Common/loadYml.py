@@ -1,13 +1,14 @@
 #! /usr/local/bin/python3
 
 import json
-import opencc
+#import opencc
 from . import file
 from . import conf
 
 yuhaoDb = "{0}/yuhao.full.dict.yaml".format(conf.prodPath)
 
 def convert2Trad(text):
+    import opencc
     converter = opencc.OpenCC("s2t.json")
     return converter.convert(text)
 

@@ -2,7 +2,7 @@
 
 import re
 import json
-import requests
+#import requests
 
 from Common import getCurrentVersion as ver
 from Common import file
@@ -74,6 +74,9 @@ def downloadFullCode(variant="light",
                      enableProxy=True,
                      ghproxy=True,
                      timeout=30):
+    import platform
+    if(platform.system() == "Darwin" and platform.processor() == "arm"):
+        raise Exception("You are currently running on arm64 macOS. Disabling network requests feature.")
     url = "https://{0}/{1}/{3}/{2}/chaifen/%E5%AE%87%E6%B5%A9%E8%BC%B8%E5%85%A5%E6%B3%95%E5%85%A8%E6%BC%A2%E5%AD%97%E6%8B%86%E5%88%86%E8%A1%A8.csv".format(domain, repo, variant, commit)
     useGhproxy = input("Would you like to have ghproxy enabled? (Y/n)")
     if useGhproxy == "Y" or useGhproxy == "y" or useGhproxy == "":

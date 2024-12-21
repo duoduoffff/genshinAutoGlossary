@@ -1,8 +1,8 @@
 #! /usr/local/bin/python3
 
-import opencc
+#import opencc
 # from snownlp import SnowNLP
-import pypinyin
+#import pypinyin
 
 from . import load
 from . import file
@@ -20,10 +20,12 @@ from Weapon import loadAllItems as Weapon
 from Artifact import loadAllItems as Artifact
 
 def convertToTrad(text):
+    import opencc
     converter = opencc.OpenCC("s2t.json")
     return converter.convert(text)
 
 def gen(array, traditional=True):
+    import pypinyin
     print("Generating...\n")
 
     text = "---\n"
