@@ -4,7 +4,8 @@ Update your input method preferences as Genshin Impact updates and rolls out a n
 
 ## Attention
 
-1. This software was tested on a macOS device having Python 3.9 installed. It may also work on some other Linux or BSD distros but probably not on a Windows device
+1. As of the time when macOS Sonoma was released, Apple has disabled the use of pip3 by declaring "externally managed" when you run pip. Thus use of third-party libs are restricted.
+1. This software was tested on a macOS device having Python ~~3.9~~ **3.13** installed. It may also work on some other Linux or BSD distros but probably not on a Windows device
 2. You have to git clone <https://github.com/Dimbreath/GenshinData> to your local PC first
 
 ## How to use
@@ -20,12 +21,12 @@ Update your input method preferences as Genshin Impact updates and rolls out a n
 ## For Yuhao-Guanghua users
 
 To make Yuhao-compatible wordlib, first make sure that the file 
-`~/Library/Rime/yuhao.full.dict` exists before proceeding as follows:
+~~`~/Library/Rime/yuhao.full.dict`~~ `~/.local/share/fcitx5/rime/yuhao/yulight.full.dict.yaml` exists before proceeding as follows:
 
 1. Make sure that GenshinData is present and run yuhao.py.
-2. Copy `Build/yuhao.genshin.dict.yaml` to `~/Library/Rime`.
-3. Find `~/Library/Rime/yuhao.dict.yaml` and append `yuhao.genshin` under 
-node `import_tables`. Adding `yuhao.dict.custom.yaml` is not going to 
+2. Copy `Build/yuhao.genshin.dict.yaml` to `~/.local/share/fcitx5/rime`.
+3. Find `~/Library/Rime/yulight.full.dict.yaml` and append `yuhao.genshin` under 
+node `import_tables`. Adding to `yuhao.dict.custom.yaml` is **NOT** going to 
 work. You have to make this change every time the input scheme updates.
 4. Re-deploy and use it.
 
