@@ -11,6 +11,9 @@ from Common import load
 from Common import gen
 from Common import conf
 
+inputMethodName = conf.inputMethodName
+fullDictFileName = conf.fullDictFileName
+
 globalProxySettings = {
         "http": "http://127.0.0.1:7890"
     }
@@ -144,7 +147,7 @@ def genYuhao():
         fullCode = downloadFullCode()
         fullCode = preprocessFullCode(fullCode)
     else:
-        fullDictPath = "{0}/yuhao/yuhao.full.dict.yaml".format(conf.prodPath)
+        fullDictPath = "{0}/yuhao/{1}.full.dict.yaml".format(conf.prodPath, fullDictFileName)
         fullCode = parseFullDict(fullDictPath)
         fullCode = parseCsvSp(fullCode, head=False)
         
@@ -166,7 +169,7 @@ def genYuhao():
 
 def genSkeleton():
     text = "---\n"
-    text += "name: {0}\n".format('"yuhao.genshin"')
+    text += "name: {0}\n".format('"{0}.genshin"'.format(inputMethodName))
     text += "version: {0}\n".format(ver.get())
     text += "sort: original\n"
     text += "columns:\n"
@@ -179,6 +182,6 @@ def genSkeleton():
     
 if __name__ == '__main__':
     text = genYuhao()
-    combinedPath = "./{0}/{1}".format(conf.buildPath, "yuhao.genshin.dict.yaml")
+    combinedPath = "./{0}/{1}".format(conf.buildPath, "{0}.genshin.dict.yaml".format(inputMethodName))
     file.FileOperations.writeToFile(text, combinedPath)
     

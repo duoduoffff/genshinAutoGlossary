@@ -12,3 +12,6 @@ outputName = "luna_pinyin_genshinext.dict.yaml"
 baseName = "luna_pinyin_genshin.dict.yaml"
 defaultWeight = "1"
 buildPath = "/Build"
+
+inputMethodName = "yulight_sc"
+fullDictFileName = "yulight"
